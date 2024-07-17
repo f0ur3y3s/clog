@@ -1,9 +1,19 @@
 # clog - A logging library for C
 
-`clog` is a simple logging library for C. It provides a simple API for logging messages to a file or to the console. It is designed to be easy to use and easy to integrate into existing projects.
+`clog` is a threadsafe logging library that writes to STDOUT or a file.
+
+The logger will only output levels of logging that are less than or equal to the level set, with `L_DEBUG` being the most verbose and `L_EMERG` being the least verbose.
 
 ## Features
 
 - Follows Cisco syslog severity levels
 - Supports logging to a file or to the console
-- Supports custom log message formatting
+
+## Example Usage:
+
+```c
+logger_init("log.txt", L_DEBUG);
+clog(L_DEBUG, "This is a debug message");
+clog(L_INFO, "This is an info message");
+logger_destroy();
+```
